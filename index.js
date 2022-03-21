@@ -2,12 +2,11 @@ const express = require('express');
 const app = express()
 const { ApolloClient, InMemoryCache, HttpLink, gql } = require('@apollo/client');
 const fetch = require('node-fetch');
+app.set('json spaces', 40);
 
-// Please fill github details
 const gitDetails = {
-  githubConvertedToken: "",
-  githubUserName: "",
-};
+  githubConvertedToken: "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",
+}
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
@@ -21,10 +20,11 @@ const client = new ApolloClient({
 
 // List of respositories
 app.get('/', async (req, res) => {
+  const username = req.query.username;
   client
     .query({
       query: gql`query {
-        user(login: "${gitDetails.githubUserName}") {
+        user(login: "${username}") {
           repositories(last: 50) {
             repos: nodes {
               name
@@ -38,19 +38,19 @@ app.get('/', async (req, res) => {
     }
 `})
     .then(result => {
-        const data = JSON.stringify(result);
-        console.log(data);
-        res.send({success:true, data:data})
+        res.send({success:true, result})
     })
     .catch(error => console.error(error));
 });
 
 // Details of repository
 app.get('/repoDetail', function(req, res) {
+  const username = req.query.username;
+  const reponame = req.query.reponame;
   client
     .query({
       query: gql`query {
-        repository(owner: "${gitDetails.githubUserName}", name: "repoA"){
+        repository(owner: "${username}", name: "${reponame}"){
           name
           diskUsage
           owner {
@@ -90,9 +90,7 @@ app.get('/repoDetail', function(req, res) {
       }
 }
 `}).then(result => {
-  const data = JSON.stringify(result);
-  console.log(data);
-  res.send({success:true, data:data})
+  res.send({success:true, result})
 })
 .catch(error => console.error(error))
 });
