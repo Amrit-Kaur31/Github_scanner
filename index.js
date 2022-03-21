@@ -5,8 +5,8 @@ const fetch = require('node-fetch');
 
 // Please fill github details
 const gitDetails = {
-  githubConvertedToken: "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",
-  githubUserName: "Amrit-Kaur31",
+  githubConvertedToken: "",
+  githubUserName: "",
 };
 
 const cache = new InMemoryCache();
