@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 app.set('json spaces', 40);
 
 const gitDetails = {
-  githubConvertedToken: "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",
+  githubConvertedToken: "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",
 }
 
 const cache = new InMemoryCache();
