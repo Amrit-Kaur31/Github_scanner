@@ -5,11 +5,7 @@ const fetch = require('node-fetch');
 app.set('json spaces', 40);
 
 const gitDetails = {
-<<<<<<< HEAD
   githubConvertedToken: "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",
-=======
-  githubConvertedToken: "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",
->>>>>>> a1772797562bdb286d0ec31aa8b005a1b3f91f84
 }
 
 const cache = new InMemoryCache();
@@ -42,11 +38,7 @@ app.get('/', async (req, res) => {
     }
 `})
     .then(result => {
-<<<<<<< HEAD
         res.json({success:true, result})
-=======
-        res.send({success:true, result})
->>>>>>> a1772797562bdb286d0ec31aa8b005a1b3f91f84
     })
     .catch(error => console.error(error));
 });
@@ -98,11 +90,7 @@ app.get('/repoDetail', function(req, res) {
       }
 }
 `}).then(result => {
-<<<<<<< HEAD
   res.json({success:true, result})
-=======
-  res.send({success:true, result})
->>>>>>> a1772797562bdb286d0ec31aa8b005a1b3f91f84
 })
 .catch(error => console.error(error))
 });
